@@ -96,6 +96,12 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
         }
     }
 
+    public var titleTextAlignment: NSTextAlignment = .center {
+        didSet {
+            titleLabel.textAlignment = titleTextAlignment
+        }
+    }
+
     /// The number of the lines to be used for the title block
     public var titleNumberOfLines = 0 {
         didSet {
@@ -139,6 +145,12 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
     public var messageTextColor = UIColor.white {
         didSet {
             messageLabel.textColor = messageTextColor
+        }
+    }
+
+    public var messageTextAlignment: NSTextAlignment = .left {
+        didSet {
+            messageLabel.textAlignment = messageTextAlignment
         }
     }
     private var message: String!
@@ -289,7 +301,7 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
         titleLabel.font = titleFont
         titleLabel.text = title
         titleLabel.numberOfLines = titleNumberOfLines
-        titleLabel.textAlignment = .center
+        titleLabel.textAlignment = titleTextAlignment
         titleView.addSubview(titleLabel)
 
         let titleLabelLeadingConstraint = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleView, attribute: .leading, multiplier: 1.0, constant: 0.0)
@@ -320,7 +332,7 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
         messageLabel.minimumScaleFactor = 0.5
-        messageLabel.textAlignment = .center
+        messageLabel.textAlignment = messageTextAlignment
         messageLabel.font = messageFont
         messageLabel.textColor = messageTextColor
         messageLabel.text = message
